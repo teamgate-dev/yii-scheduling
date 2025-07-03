@@ -130,8 +130,8 @@ class Schedule extends \CComponent
             $filename = preg_replace('/\//', '_', $filename[0]);
 
             $event = $this->command($command)
+                ->sendOutputTo(\Yii::getPathOfAlias('application.runtime.schedule') . "/{$filename}_{$timestamp}_{$cnt}.out")
                 ->processOutput(function ($text, $app) { fwrite(\STDOUT, $text); })
-//                ->sendOutputTo(\Yii::getPathOfAlias('application.runtime.schedule') . "/{$filename}_{$timestamp}_{$cnt}.out")
                 ->cron($cronDefinition)
                 ->setInForeground($inForeground);
 
