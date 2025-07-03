@@ -40,7 +40,7 @@ class Schedule extends \CComponent
     {
         $this->_mutex = Yii::app()->hasComponent('mutex')
             ? Yii::app()->getComponent('mutex')
-            : new FileMutex('schedule', Yii::app()->runtimePath);
+            : new FileMutex('schedule', env('MUTEX_RUNTIME_PATH', Yii::app()->runtimePath));
     }
 
     /**
